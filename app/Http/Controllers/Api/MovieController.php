@@ -32,7 +32,7 @@ final class MovieController extends ApiBaseController
         MovieAsPaginationArrayPresenter $movieAsPaginateArrayPresenter,
         Request $request
     ): JsonResponse {
-        $this->authorize('update', Movie::class);
+
         $movies = $getMoviesByAuthUserAction
             ->execute(new GetMoviesByAuthUserRequest(
                 $request->input('orderDirection')
@@ -98,6 +98,7 @@ final class MovieController extends ApiBaseController
         UpdateMovieValidateRequest $request,
         string $movie,
     ): JsonResponse {
+        $this->authorize('update', Movie::class);
         $updatedMovie = $updateMovieAction
             ->execute(new UpdateMovieRequest(
                 (int)$movie,
@@ -115,6 +116,7 @@ final class MovieController extends ApiBaseController
         DeleteMovieAction $deleteMovieAction,
         string $movie
     ): JsonResponse {
+        $this->authorize('destroy', Movie::class);
         $deleteMovieAction
             ->execute(new DeleteMovieRequest(
                 (int)$movie

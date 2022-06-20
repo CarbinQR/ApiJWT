@@ -16,4 +16,9 @@ final class MoviePolicy
     {
         return Auth::id() === $movie->user_id;
     }
+
+    public function destroy(Movie $movie): bool
+    {
+        return Auth::id() === $movie->user_id;
+    }
 }
